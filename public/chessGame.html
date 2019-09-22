@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="styles/chessGame.css">
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-storage.js"></script>
+  <script src="scripts/defs.js"></script>
+  <script src="scripts/evaluate.js"></script>
+  <script src="scripts/board.js"></script>
+  <script src="scripts/moveGen.js"></script>
+  <script src="scripts/cellInfo.js"></script>
+  <script defer src="scripts/chessFirebase.js"></script>
+  <script src="scripts/codeProject.js" defer></script>
+</head>
+
+<body>
+  <div class="chessBoard">
+    <table class="chessBoard">
+      <!--row0 (a-f)-->
+      <tr>
+        <!--bsquare stands for black square, wsquare for white square, the id is based on the 120 board(first 2 digit) (piece id last 2 digit)-->
+        <td class="prefix num">8</td>
+        <td class="cell wsquare" id='21_10' onclick="cellInfo(this)">&#9820;</td>
+        <td class="cell bsquare" id='22_08' onclick="cellInfo(this)">&#9822;</td>
+        <td class="cell wsquare" id='23_09' onclick="cellInfo(this)">&#9821;</td>
+        <td class="cell bsquare" id='24_11' onclick="cellInfo(this)">&#9819;</td>
+        <td class="cell wsquare" id='25_12' onclick="cellInfo(this)">&#9818;</td>
+        <td class="cell bsquare" id='26_09' onclick="cellInfo(this)">&#9821;</td>
+        <td class="cell wsquare" id='27_08' onclick="cellInfo(this)">&#9822;</td>
+        <td class="cell bsquare" id='28_10' onclick="cellInfo(this)">&#9820;</td>
+      </tr>
+      <!--row1 of black pawns-->
+      <tr>
+        <td class="prefix num">7</td>
+        <td class="cell bsquare" id='31_07' onclick="cellInfo(this)">&#9823;</td>
+        <td class="cell wsquare" id='32_07' onclick="cellInfo(this)">&#9823;</td>
+        <td class="cell bsquare" id='33_07' onclick="cellInfo(this)">&#9823;</td>
+        <td class="cell wsquare" id='34_07' onclick="cellInfo(this)">&#9823;</td>
+        <td class="cell bsquare" id='35_07' onclick="cellInfo(this)">&#9823;</td>
+        <td class="cell wsquare" id='36_07' onclick="cellInfo(this)">&#9823;</td>
+        <td class="cell bsquare" id='37_07' onclick="cellInfo(this)">&#9823;</td>
+        <td class="cell wsquare" id='38_07' onclick="cellInfo(this)">&#9823;</td>
+      </tr>
+      <!--row2 of blank-->
+      <tr>
+        <td class="prefix num">6</td>
+        <td class="cell wsquare" id='41_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='42_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='43_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='44_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='45_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='46_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='47_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='48_00' onclick="cellInfo(this)"></td>
+      </tr>
+      <!--row3 of blank-->
+      <tr>
+        <td class="prefix num">5</td>
+        <td class="cell bsquare" id='51_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='52_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='53_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='54_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='55_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='56_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='57_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='58_00' onclick="cellInfo(this)"></td>
+      </tr>
+      <!--row4 of blank-->
+      <tr>
+        <td class="prefix num">4</td>
+        <td class="cell wsquare" id='61_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='62_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='63_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='64_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='65_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='66_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='67_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='68_00' onclick="cellInfo(this)"></td>
+      </tr>
+      <!--row5 of blank-->
+      <tr>
+        <td class="prefix num">3</td>
+        <td class="cell bsquare" id='71_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='72_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='73_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='74_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='75_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='76_00' onclick="cellInfo(this)"></td>
+        <td class="cell bsquare" id='77_00' onclick="cellInfo(this)"></td>
+        <td class="cell wsquare" id='78_00' onclick="cellInfo(this)"></td>
+      </tr>
+      <!--row6 of black pawns-->
+      <tr>
+        <td class="prefix num">2</td>
+        <td class="cell wsquare" id='81_01' onclick="cellInfo(this)">&#9817;</td>
+        <td class="cell bsquare" id='82_01' onclick="cellInfo(this)">&#9817;</td>
+        <td class="cell wsquare" id='83_01' onclick="cellInfo(this)">&#9817;</td>
+        <td class="cell bsquare" id='84_01' onclick="cellInfo(this)">&#9817;</td>
+        <td class="cell wsquare" id='85_01' onclick="cellInfo(this)">&#9817;</td>
+        <td class="cell bsquare" id='86_01' onclick="cellInfo(this)">&#9817;</td>
+        <td class="cell wsquare" id='87_01' onclick="cellInfo(this)">&#9817;</td>
+        <td class="cell bsquare" id='88_01' onclick="cellInfo(this)">&#9817;</td>
+      </tr>
+      <!--row7 (a-f)-->
+      <tr>
+        <td class="prefix num">1</td>
+        <td class="cell bsquare" id='91_04' onclick="cellInfo(this)">&#9814;</td>
+        <td class="cell wsquare" id='92_02' onclick="cellInfo(this)">&#9816;</td>
+        <td class="cell bsquare" id='93_03' onclick="cellInfo(this)">&#9815;</td>
+        <td class="cell wsquare" id='94_05' onclick="cellInfo(this)">&#9813;</td>
+        <td class="cell bsquare" id='95_06' onclick="cellInfo(this)">&#9812;</td>
+        <td class="cell wsquare" id='96_03' onclick="cellInfo(this)">&#9815;</td>
+        <td class="cell bsquare" id='97_02' onclick="cellInfo(this)">&#9816;</td>
+        <td class="cell wsquare" id='98_04' onclick="cellInfo(this)">&#9814;</td>
+      </tr>
+      <!--row for prefix (a-f)-->
+      <tr class="alp">
+        <td class="prefix"></td>
+        <td class="prefix">a</td>
+        <td class="prefix">b</td>
+        <td class="prefix">c</td>
+        <td class="prefix">d</td>
+        <td class="prefix">e</td>
+        <td class="prefix">f</td>
+        <td class="prefix">g</td>
+        <td class="prefix">h</td>
+      </tr>
+    </table>
+    <div id="turn">It's White's Turn</div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+.box {
+    width: 320px;
+    height: 500px;
+    background: #000;
+    color: #fff;
+    top: 55%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 50px 30px;
+
+}
+
+.box2 {
+    width: 620px;
+    height: 560px;
+    background: #000;
+    color: #fff;
+    top: 63%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 40px 30px;
+
+}
+
+header {
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAYpt9Y-l1LaMDZ9NQKu0-AhniHiXA4pizreWmbT93UCYJXQBP");
+    background-size: cover;
+    background-position: center;
+    min-height: 700px;
+
+}
+
+.Login-in {
+    display: none;
+}
+
+.Sign-up {
+    display: none;
+}
+
+.three-choice {
+    display: block;
+    background: pink;
+}
+
+#createButton {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    color: white !important;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+.img1 {
+
+    background-size: cover;
+    bottom: 30%;
+    width: 100%;
+    height: auto;
+    padding-left: 10%;
+}
+
+.img2 {
+
+    background-size: cover;
+    bottom: 30%;
+}
+
+.img3 {
+
+    background-size: cover;
+    bottom: 30%;
+
+}
