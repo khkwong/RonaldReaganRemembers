@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>RRR</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+   <!-- link css -->
+   <link rel="stylesheet" href="chessQue.css">
+   <meta charset="utf-8">
+   <title>chessQue</title>
+   <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-storage.js"></script>
+  </head>
+  <style>
+
+    .load {
+           animation-name: rotate;
+           animation-duration: 2s;
+           animation-iteration-count: infinite;
+         }
+         @keyframes rotate {
+           from {
+             transform: rotate(0deg);
+           } to {
+             transform: rotate(359deg)
+           }
+         }
+
+         .firebasepvp {
+           background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRL_ryUVAYyDTJx4FUinrnmHj1A6XFCQZuJCaXRZwqG03u40vsuA");
+           background-repeat: no-repeat;
+           background-size:cover;
+         }
+         .container10 {
+           padding: 20px;
+         }
+
+         .buttona1 {
+           cursor: pointer;
+           padding-right: 40vw;
+           padding-left: 40vw;
+           padding-top: 10px;
+           background-image: url("https://www.technowing.net/wp-content/uploads/2018/11/Top-10-Best-Android-Chess-App.jpg");
+           clip-path: polygon(0 0, 66% 0, 33% 100%, 0% 100%);
+           background-size:cover;
+           height:80vh;
+           width:50%;
+           max-width: 50%;
+           position: absolute;
+           right:8%;
+           border-color: black;
+           border-radius: 20px;
+           border-width: 5px;
+
+         }
+         .buttona2 {
+           cursor: pointer;
+           padding-right: 40vw;
+           padding-left: 40vw;
+           padding-top: 10px;
+           background-image: url("https://thumbs-prod.si-cdn.com/6t32wu2xSTOHZ72y9nAVJBVpcy8=/800x600/filters:no_upscale():focal(4290x2860:4291x2861)/https://public-media.si-cdn.com/filer/64/73/6473f6c7-4e17-40a2-a612-826f0084f709/m5af7m.jpg");
+          clip-path: polygon(100% 0, 66% 0, 33% 100%, 100% 100%);
+           background-size:cover;
+           height:80vh;
+           width:50%;
+           max-width: 50%;
+          position: relative;
+          border-color: black;
+          border-spacing: inherit;
+          border-radius: 20px;
+         border-width: 5px;
+
+         }
+         #PVP {
+           text-align:left;
+           position: relative !important;
+           right: 300px !important;
+           bottom: -75px;
+           font-size: 50px;
+           width: 200px;
+           height: 200px;
+         }
+          .PVC{
+            text-align: right;
+            position: relative;
+            right: -170px;
+          }
+
+  </style>
+
+
+  <body>
+<!--chessQue.html-->
+  <div class="firebasepvp">
+      <div class="container10">
+      <ul class="center">
+        <li><button class="buttona1 col s12 l6 waves-effect waves-lighten z-depth-3" type="button" name="button" onclick="redirect()">
+          <h2 id="PVP">PVP</h2>
+        </button></li>
+        <li><button class="buttona2 col s12 l6 push-l1 up-align waves-effect waves-lighten z-depth-3" type="button" name="button">
+          <h2 class="PVC">PVC</h2>
+        </button></li>
+      </ul>
+    </div>
+    </div>
+    <footer class="page-footer grey darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l6">
+          <h5>About Me</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+
+        </div>
+        <div class="col s12 l4offset-l2">
+            <h5>Connect</h5>
+            <ul>
+                <li class=""><a href="#" class="grey-text text-lighten-3">Facebook</a></li>
+                <li> <a href="#" class="grey-text text-lighten-3">Twitter</a></li>
+                <li> <a href="#" class="grey-text text-lighten-3">Linked In</a></li>
+                <li> <a href="#" class="grey-text text-lighten-3">Instagram</a></li>
+
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-4">
+      <div class="container center-align">&copy;2019 Photo Jream
+
+      </div>
+
+    </div>
+    </footer>
+
+      <script>
+    // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCNLE8XbFF5SNwTUKD6to_7MYXAYhG2g3k",
+        authDomain: "cheive.firebaseapp.com",
+        databaseURL: "https://cheive.firebaseio.com",
+        projectId: "cheive",
+        storageBucket: "cheive.appspot.com",
+        messagingSenderId: "519206724928",
+        appId: "1:519206724928:web:4adac1eac9778e3b"
+      };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        //listen for section status change
+        db.collection("section").onSnapshot(snapshot => {
+          var changes = snapshot.docChanges();
+          changes.forEach(change => {
+            if (change.type == "modified") {
+              if (change.doc.data().section == 2) { //2 is set in the init board
+                location.href = "codeProject.html";
+              }
+            }
+          })
+        })
+        //trigger when press pvp
+        function redirect() {
+          document.querySelector("#PVP").innerHTML =
+          `<h5>Finding Your Match</h5>
+          <i class="material-icons right load">loop</i>
+          `;
+            //update section
+            db.collection("section").doc("state").get().then(state => {
+              var section = state.data().section;
+              if (section % 2 == 1) {
+                  location.href = "codeProject.html";
+              } else {
+                db.collection("section").doc("state").set({
+                  section: section + 1
+                })
+              }
+            })
+
+        }
+      </script>
+  </body>
+</html>

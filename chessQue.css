@@ -1,0 +1,16 @@
+body {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRL_ryUVAYyDTJx4FUinrnmHj1A6XFCQZuJCaXRZwqG03u40vsuA");
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.container {
+  margin-top: 100px;
+  padding: 20px;
+}
+
+button {
+  cursor: pointer;
+  padding-right: 30vw;
+  padding-left: 30vw;
+  padding-top: 0px;
+}

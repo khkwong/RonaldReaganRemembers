@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+  </head>
+  <style media="screen">
+    .box{
+       width:320px;
+        height:500px;
+        background:#000;
+        color:#fff;
+        top:60%;
+        left:50%;
+        position:absolute;
+        transform:translate(-50%,-50%);
+        box-sizing: border-box;
+        padding:-30px 30px;
+        background-color:rgb(255,250,250);
+
+
+      }
+      .blackwonbox{
+        background-color:grey;
+        height: 20%;
+        width: 100%;
+        margin-top:-10%
+      }
+      .blackwonword{
+        color: white;
+        text-align: center;
+        transform:translate(6%,50%);
+      }
+      .blackwonwords{
+        color: white;
+        text-align: center;
+        transform:translate(0%,50%);
+      }
+      .assignment{
+        font-size:125px;
+        transform: translate(20%,30%);
+        color:black
+
+      }
+      .score{
+        color:grey
+      }
+
+
+
+
+  </style>
+
+  <body>
+    <header>
+      <div class="navbar-fixed">
+      <nav class="nav-wrapper brown lighten-2">
+        <div class="container">
+          <a href="" class="brand-logo">RRR</a>
+          <a href="" class="sidenav-trigger" data-target="mobile-menu">
+          <i class="material-icons">menu</i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+              <li><a href="#">Login</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contant</a></li>
+              <li><a href="#">Info</a></li>
+              <li><a href="#"class="tooltipped btn-floating btn-small brown darken-2 " data-tooltip="This is twitter">
+                <i class="fab fa-twitter"></i>
+              </a></li>
+              <li><a href="#"class="tooltipped btn-floating btn-small brown darken-2" data-tooltip="This is twitter">
+                <i class="fab fa-instagram"></i>
+              </a></li>
+              <li><a href="#"class="tooltipped btn-floating btn-small brown darken-2" data-tooltip="This is twitter">
+                <i class="fab fa-facebook"></i>
+              </a></li>
+          </ul>
+          <ul class="sidenav grey lighten-2" id="mobile-menu">
+              <li><a href="#">Login</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contant</a></li>
+              <li><a href="#">Info</a></li>
+          </ul>
+        </div>
+      </nav>
+      </div>
+  </header>
+  <!--gameover-->
+    <div class="container">
+      <div class="box z-depth-2">
+        <div class="blackwonbox grey darken-1">
+            <div class="btn grey waves-effect waves-teal right">X</div>
+            <h3 class="blackwonword">Black won</h3>
+            <h6 class="blackwonwords">by timeout</h6>
+        </div>
+
+      <!--player-->
+
+        <i class="material-icons assignment">assignment_ind</i>
+        <i class="material-icons assignment">assignment_ind</i>
+     <!--total score-->
+       <h4 class="score center-align">787</h4>
+     <!--rematch-->
+       <a class="waves-effect waves-light btn grey" style="left:30%"><i class="material-icons left">autorenew</i>button</a>
+     <!--parallax-->
+       <div class="parallax-container">
+         <div class="parallax">
+           <img src="https://github.com/iamshaunjp/materialize-playlist/blob/lesson-18/img/stars.jpg?raw=true" alt="" class="responsive-img">
+         </div>
+       </div>
+
+     </div>
+  </div>
+
+ <script>
+  $(document).ready(function(){
+    $('.parallax').parallax();
+
+  })
+ </script>
+  </body>
+</html>
