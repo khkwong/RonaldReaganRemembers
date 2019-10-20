@@ -1,15 +1,42 @@
+let loginPopUp = document.getElementById("loginBtn");
+let signUpPopup = document.getElementById("signUpPopup");
+let loginSubmit = document.getElementById("submitBtn");
+let createAccountBtn = document.getElementById("createAccBtn");
+let firestore = firebase.firestore();
+
+loginPopUp.addEventListener('click', function () {
+    document.getElementsByClassName("Login-in")[0].style.display = "block";
+    document.getElementsByClassName("Sign-up")[0].style.display = "none";
+})
+signUpPopup.addEventListener('click', function () {
+    document.getElementsByClassName("Login-in")[0].style.display = "none";
+    document.getElementsByClassName("Sign-up")[0].style.display = "block";
+})
+
+loginSubmit.addEventListener('click', login);
+createAccountBtn.addEventListener('click', signUp);
+
+
+
 //sign up function
 function signUp() {
-    let email = document.getElementById("emailTxt").value;
-    let pw = document.getElementById("pwTxt").value;
+    let username = document.getElementById("usernameInput").value;
+    let email = document.getElementById("emailSignUp").value;
+    let pw = document.getElementById("passwordSignUp").value;
+    let level = document.getElementById("answers").value;
     firebase.auth().createUserWithEmailAndPassword(email, pw).then(function (user) {
         console.log("success sign up");
         firestore.collection('users').doc(firebase.auth().currentUser.uid + "").set({
-            email: email,
-            id: firebase.auth().currentUser.uid
-        }).catch(function (error) {
-            console.log("didnt do it dumbass", error);
-        })
+                email: email,
+                username: username,
+                playLevel: level,
+                id: firebase.auth().currentUser.uid
+            }).then(function () {
+                window.location = "landing.html";
+            })
+            .catch(function (error) {
+                console.log("didnt do it dumbass", error);
+            })
     })
 }
 
@@ -19,5 +46,6 @@ function login() {
     let loginpw = document.getElementById("password").value;
     firebase.auth().signInWithEmailAndPassword(loginEmail, loginpw).then(function () {
         console.log("successful sign in");
+        window.location = "landing.html";
     })
 }
