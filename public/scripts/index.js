@@ -1,5 +1,7 @@
 let loginPopUp = document.getElementById("loginBtn");
 let signUpPopup = document.getElementById("signUpPopup");
+let loginPopUp2 = document.getElementById("loginBtn2");
+let signUpPopup2 = document.getElementById("signUpPopup2");
 let loginSubmit = document.getElementById("submitBtn");
 let createAccountBtn = document.getElementById("createAccBtn");
 let firestore = firebase.firestore();
@@ -7,10 +9,22 @@ let firestore = firebase.firestore();
 loginPopUp.addEventListener('click', function () {
     document.getElementsByClassName("Login-in")[0].style.display = "block";
     document.getElementsByClassName("Sign-up")[0].style.display = "none";
+    document.getElementById("homePage").style.display = "none";
 })
 signUpPopup.addEventListener('click', function () {
     document.getElementsByClassName("Login-in")[0].style.display = "none";
     document.getElementsByClassName("Sign-up")[0].style.display = "block";
+})
+
+loginPopUp2.addEventListener('click', function () {
+    document.getElementsByClassName("Login-in")[0].style.display = "block";
+    document.getElementsByClassName("Sign-up")[0].style.display = "none";
+    document.getElementById("homePage").style.display = "none";
+})
+signUpPopup2.addEventListener('click', function () {
+    document.getElementsByClassName("Login-in")[0].style.display = "none";
+    document.getElementsByClassName("Sign-up")[0].style.display = "block";
+    document.getElementById("homePage").style.display = "none";
 })
 
 loginSubmit.addEventListener('click', login);

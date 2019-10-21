@@ -84,3 +84,23 @@ input {
     bottom: 30%;
 
 }
+
+#homePage {
+    position: relative;
+    color: #FF1493;
+    bottom: 100vh;
+    left: 20vw;
+    text-shadow: 2px 2px #000;
+    margin-right: 25vw;
+    margin-bottom: -30vh;
+
+}
+
+#homePageBtn {
+    position: relative;
+    left: 20vw;
+}
+
+#loginBtn2 {
+    margin-right: 5vw;
+}
