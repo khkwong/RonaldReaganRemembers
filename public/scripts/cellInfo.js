@@ -10,7 +10,7 @@ function cellInfo(elem) {
     var piece = Number(elem.id.substring(3,5));
     var current = sq + customFlashPiece(piece); //current piece
     var before = gameBoard.beforePos + customFlashPiece(gameBoard.beforePiece);
-    var beforePiece= gameBoard.beforePiece;
+    var beforePiece = gameBoard.beforePiece;
     //if green piece is clicked
     if (document.getElementById(current).style.backgroundColor == "springgreen") {
       var moveIn = sq + customFlashPiece(gameBoard.beforePiece);
@@ -81,6 +81,7 @@ function cellInfo(elem) {
           supreme: gameBoard.supreme
         });
       });
+    
       //swap position
       gameBoard.pieces[sq] = gameBoard.beforePiece;
       gameBoard.pieces[gameBoard.beforePos] = 0;
@@ -105,8 +106,10 @@ function cellInfo(elem) {
       gameBoard.flashPiece = [];
     }
 
+
       //show the available move
     if(gameBoard.notFlash == false) {
+      console.log('cell')
       enPas(sq);
       db.collection("listen").doc("holder").get().then(geez => {
         SqBlocked(piece,sq,geez.data().player);
@@ -149,6 +152,9 @@ function cellInfo(elem) {
 
 //check if there is an ally piece blocking its way
 function SqBlocked(piece, sq, player) {
+  // console.log("white: " + gameBoard.server);
+  // console.log("player: " + player);
+  // console.log("gameBoard.ai: " + gameBoard.ai);
     //for white pawn
     if (player == 0 && gameBoard.server == 2) { //black is always server 1
       switch (piece) {
@@ -162,7 +168,8 @@ function SqBlocked(piece, sq, player) {
         case 6: isEmptyKi(sq); break;
         default: console.log("fail white");
       }
-    } else if (player == 1 && gameBoard.server == 1) {
+    } else if (player == 1 && gameBoard.server == 1 || gameBoard.ai) {
+      console.log("black: " + gameBoard.server);
         switch(piece) {
           //for black pawn
           case 7: isEmptyBp(sq); break;
@@ -207,6 +214,7 @@ function isEmptyBp(sq) {
   if (gameBoard.pieces[sq + 10] == PIECES.EMPTY ) {
     gameBoard.flashSuggest.push(sq + 10);
     gameBoard.flashPiece.push(gameBoard.pieces[sq + 10]);
+    gameBoard.genCount.push(7);
     let specialCon1 = (false == bpMoved(sq)) ? true : false;
     specialCon = (specialCon1 == true) ? true : false;
   }
@@ -215,15 +223,18 @@ function isEmptyBp(sq) {
    if (gameBoard.pieces[sq + 20] == PIECES.EMPTY && specialCon == true) {
     gameBoard.flashSuggest.push(sq + 20);
     gameBoard.flashPiece.push(gameBoard.pieces[sq + 20]);
+    gameBoard.genCount.push(7);
   }
   //pawn attack mode for black
   if (blackWhite(gameBoard.pieces[sq + 9]) == "WHITE"){
     gameBoard.flashSuggest.push(sq + 9);
     gameBoard.flashPiece.push(gameBoard.pieces[sq + 9]);
+    gameBoard.genCount.push(7);
   }
   if (blackWhite(gameBoard.pieces[sq + 11]) == "WHITE"){
     gameBoard.flashSuggest.push(sq + 11);
     gameBoard.flashPiece.push(gameBoard.pieces[sq + 11]);
+    gameBoard.genCount.push(7);
   }
 }
 //enPassant
@@ -282,6 +293,7 @@ function isEmptyKn(sq) {
     if (pieceAhead == PIECES.EMPTY || (colorAhead != "OFFBOARD" && selfColor != colorAhead)) {
       gameBoard.flashSuggest.push(sq + KnDir[i]);
       gameBoard.flashPiece.push(gameBoard.pieces[sq + KnDir[i]]);
+      gameBoard.genCount.push(8);
     }
   }
 }
@@ -295,6 +307,7 @@ function isEmptyBi(sq) {
     while(pieceAhead == PIECES.EMPTY) {
       gameBoard.flashSuggest.push(temp);
       gameBoard.flashPiece.push(gameBoard.pieces[temp]);
+      gameBoard.genCount.push(9);
       temp += BiDir[i];
       pieceAhead = gameBoard.pieces[temp];
       colorAhead =  blackWhite(pieceAhead);
@@ -302,6 +315,7 @@ function isEmptyBi(sq) {
     if (colorAhead != "OFFBOARD" && selfColor != colorAhead) {
       gameBoard.flashSuggest.push(temp);
       gameBoard.flashPiece.push(gameBoard.pieces[temp]);
+      gameBoard.genCount.push(9);
     }
   }
 }
@@ -315,6 +329,7 @@ function isEmptyRo(sq) {
     while(pieceAhead == PIECES.EMPTY) {
       gameBoard.flashSuggest.push(temp);
       gameBoard.flashPiece.push(gameBoard.pieces[temp]);
+      gameBoard.genCount.push(10);
       temp += RkDir[i];
       pieceAhead = gameBoard.pieces[temp];
       colorAhead =  blackWhite(pieceAhead);
@@ -322,6 +337,7 @@ function isEmptyRo(sq) {
     if (colorAhead != "OFFBOARD" && selfColor != colorAhead) {
       gameBoard.flashSuggest.push(temp);
       gameBoard.flashPiece.push(gameBoard.pieces[temp]);
+      gameBoard.genCount.push(10);
     }
   }
 }
@@ -334,27 +350,32 @@ function isEmptyKi(sq) {
     if (pieceAhead == PIECES.EMPTY || (colorAhead != "OFFBOARD" && selfColor != colorAhead)) {
       gameBoard.flashSuggest.push(sq + KiDir[i]);
       gameBoard.flashPiece.push(gameBoard.pieces[sq + KiDir[i]]);
+      gameBoard.genCount.push(12);
     }
   }
   //castle for white king to the right
   if(sq == 95 && gameBoard.castleWhite[0] == 0 && gameBoard.castleWhite[1] == 0 && gameBoard.pieces[96] == 0 && gameBoard.pieces[97] == 0) {
     gameBoard.flashSuggest.push(97);
     gameBoard.flashPiece.push(0);
+    gameBoard.genCount.push(12);
   }
   //castle for white king to the left
   if(sq == 95 && gameBoard.castleWhite[0] == 0 && gameBoard.castleWhite[1] == 0 && gameBoard.pieces[92] == 0 && gameBoard.pieces[93] == 0 && gameBoard.pieces[94] == 0) {
     gameBoard.flashSuggest.push(93);
     gameBoard.flashPiece.push(0);
+    gameBoard.genCount.push(12);
   }
   //castle for black king to the right
   if(sq == 25 && gameBoard.castleBlack[0] == 0 && gameBoard.castleBlack[1] == 0 && gameBoard.pieces[26] == 0 && gameBoard.pieces[27] == 0) {
     gameBoard.flashSuggest.push(27);
     gameBoard.flashPiece.push(0);
+    gameBoard.genCount.push(12);
   }
   //castle for black king to the left
   if(sq == 25 && gameBoard.castleBlack[0] == 0 && gameBoard.castleBlack[1] == 0 && gameBoard.pieces[22] == 0 && gameBoard.pieces[23] == 0 && gameBoard.pieces[24] == 0) {
     gameBoard.flashSuggest.push(23);
     gameBoard.flashPiece.push(0);
+    gameBoard.genCount.push(12);
   }
 }
 //update castle condition
@@ -437,6 +458,7 @@ function isEmptyQu(sq) {
     while(pieceAhead == PIECES.EMPTY) {
       gameBoard.flashSuggest.push(temp);
       gameBoard.flashPiece.push(gameBoard.pieces[temp]);
+      gameBoard.genCount.push(11);
       temp += KiDir[i];
       pieceAhead = gameBoard.pieces[temp];
       colorAhead =  blackWhite(pieceAhead);
@@ -444,6 +466,7 @@ function isEmptyQu(sq) {
     if (colorAhead != "OFFBOARD" && selfColor != colorAhead) {
       gameBoard.flashSuggest.push(temp);
       gameBoard.flashPiece.push(gameBoard.pieces[temp]);
+      gameBoard.genCount.push(11);
     }
   }
 }
@@ -486,8 +509,68 @@ function customFlashPiece(piece) {
   }
 }
 
-
+//move for ai
+function moveGen() {
+  SqAttacked();
+  // var actual = gameBoard.flashSuggest.map(x => {
+  //   if (x != 0) return x;
+  // });
+  var random = Math.floor(Math.random() * gameBoard.flashSuggest.length);
+  while(gameBoard.flashSuggest[random] == 0) {
+    random = Math.floor(Math.random() * gameBoard.flashSuggest.length);
+  }
+  var count = 0;
+  for (var i = 0; i <= random; i++) {
+    if (gameBoard.flashSuggest[i] == 0) count++;
+  }
+  console.log(gameBoard.flashSuggest[random]);
+  console.log(gameBoard.flashPiece[random]);
+  var piece = gameBoard.blackPiece[count];
+  var pos = gameBoard.flashSuggest[random];
+  var moveIn = pos + customFlashPiece(gameBoard.flashPiece[random]); //current piece
+  console.log(gameBoard.blackPiece);
+  console.log(gameBoard.blackPos);
+  var before = gameBoard.blackPos[count] + customFlashPiece(piece);
+  console.log(before);
+  //change everything of the before piece
+  document.getElementById(before).innerHTML = "";
+  document.getElementById(before).id = before.replace(before.substring(3, 5), "00");
+  //update the moveIn square
+  console.log(moveIn);
+  document.getElementById(moveIn).innerHTML = convertPieceHtml(gameBoard.blackPiece[count]);
+  document.getElementById(moveIn).id = pos + gameBoard.blackPiece[count];
+  gameBoard.pieces[pos] = gameBoard.blackPiece[random];
+  gameBoard.pieces[gameBoard.blackPos[random]] = 0;
+  db.collection('listen').doc('holder').get().then(geez => {
+    var info = geez.data();
+    db.collection('listen').doc('holder').update({
+      ply: info.ply + 1
+    });
+  });
+  gameBoard.notFlash = false;
+}
 //check if a piece is being attacked
-function SqAttacked(sq) {
-
+function SqAttacked() {
+  for (var i = 0; i < gameBoard.pieces.length; i++) {
+    if (gameBoard.pieces[i] >= 7 && gameBoard.pieces[i] <= 12) {
+      gameBoard.blackPos.push(i);
+      gameBoard.blackPiece.push(gameBoard.pieces[i]);
+    }
+  }
+  // var whitePos = [];
+  // var whitePiece = [];
+  // for (var i = 0; i < gameBoard.pieces.length; i++) {
+  //   if (gameBoard.pieces[i] >= 1 && gameBoard.pieces[i] <= 6) {
+  //     whitePos.push(i);
+  //     whitePiece.push(gameBoard.pieces[i]);
+  //   }
+  // }
+  for (var i = 0; i < gameBoard.blackPos.length; i++) {
+    SqBlocked(gameBoard.blackPiece[i], gameBoard.blackPos[i], 1);
+    gameBoard.flashPiece.push(0);
+    gameBoard.flashSuggest.push(0);
+  }
+  console.log(gameBoard.flashSuggest);
+  console.log(gameBoard.flashPiece);
+  console.log(gameBoard.genCount);
 }

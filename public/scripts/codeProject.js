@@ -41,13 +41,13 @@ function init() {
       player: 0,//for player 2
       ply: 0,
       //update local board
-      gameBoard: gameBoard.pieces
+      gameBoard: gameBoard.pieces,
+      ai: gameBoard.ai
     });
     //reset the section
     db.collection('section').doc("state").set({
       section: 0 //for player 2
     })
-    console.log(gameBoard.server);
   })
 }
 

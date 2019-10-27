@@ -28,7 +28,12 @@ gameBoard.player = 0; //0 for p1, 1 for p2
 gameBoard.enPasName = "";
 gameBoard.enPasActivate = 0;
 gameBoard.enPasId = "";
+gameBoard.ai = false;
 gameBoard.server; //server of the player
+//ai genlist
+gameBoard.blackPos = [];
+gameBoard.blackPiece = [];
+gameBoard.genCount = [];
 //initialize the board
 function initBoard() {
   //set all the values (ranks & square value) to 100
