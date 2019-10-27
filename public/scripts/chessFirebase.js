@@ -40,7 +40,6 @@
           //turn pawn into queen
           turnQueen(sq);
           //update castle condition
-          console.log("execution achieved");
           gameBoard.beforePiece = piece;
           gameBoard.beforePos = info.before.substring(0, 2);
           updateCastle(sq);
@@ -57,8 +56,10 @@
           if (info.player == 0) {
             document.getElementById('turn').innerHTML = "It's White's Turn";
           }
-          if(info.player == 1 && info.AI == true) {
+          if(info.player == 1 && info.ai == true) {
+            console.log("movegen exe");
             moveGen();
+            document.getElementById('turn').innerHTML = "It's White's Turn";
           }
           //flash #turn
           document.getElementById('turn').style.backgroundColor = "springgreen";
