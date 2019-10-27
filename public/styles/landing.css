@@ -26,13 +26,6 @@
 
 }
 
-header {
-    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAYpt9Y-l1LaMDZ9NQKu0-AhniHiXA4pizreWmbT93UCYJXQBP");
-    background-size: cover;
-    background-position: center;
-    min-height: 700px;
-}
-
 .Login-in {
     display: none;
 }
@@ -83,24 +76,4 @@ input {
     background-size: cover;
     bottom: 30%;
 
-}
-
-#homePage {
-    position: relative;
-    color: #FF1493;
-    bottom: 100vh;
-    left: 20vw;
-    text-shadow: 2px 2px #000;
-    margin-right: 25vw;
-    margin-bottom: -30vh;
-
-}
-
-#homePageBtn {
-    position: relative;
-    left: 20vw;
-}
-
-#loginBtn2 {
-    margin-right: 5vw;
 }
