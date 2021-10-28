@@ -1,6 +1,6 @@
 # Ronald Reagan Remember
-Congressional App Challenge (CAC) video: <br>
-Website link:
+Congressional App Challenge (CAC) video: https://www.youtube.com/watch?v=8p2ibn6fGmw<br>
+Website link: https://ronaldreaganremembers.web.app
 ## Description
 ### Authentication
 ### Chess
