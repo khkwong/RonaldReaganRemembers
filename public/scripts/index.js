@@ -49,7 +49,7 @@ function signUp() {
                 window.location = "landing.html";
             })
             .catch(function (error) {
-                console.log("didnt do it dumbass", error);
+                console.log("Error: ", error);
             })
     })
 }
