@@ -13,9 +13,10 @@ Toward this end, we sought to create a custom app tailored toward the AD’s pat
 
 ### Authentication
 In order to make the app feel customed towards every individual, we put in place an account system using Firebase's built-in authentication system. Individuals visiting the app for the first time have to sign up with an email and password, which are then stored in our Firebase database. From then on, users can login with their credentials to see the rest of what the app has to offer. Each unique email can only be used once and the password must be six or more characters in length to be considered valid. With this system in place, we can track certain information about each user in order to effectively match up people of appropriate skill level in the chess game.
-### Chess
+Chess
 #### PVC
 #### PVP
+### ![ezgif com-gif-maker](https://user-images.githubusercontent.com/30357759/139355560-ba65a54a-afcc-48a9-8a51-32cd793d4490.gif)
 ### Flash Cards
 Based of of cue cards used by caregivers of Alzheimer's patients, our web application has integrated a flash card feature to further help Alzheimer's patients remember the things that are important to them. Currently, it has been shown that while words often get lost with Alzheimer's patients, their memory and feelings can be triggered through the usage of cue cards, which shows images of whatever the caregivers wish to communicate to the patient to the patient. Our flash card feature makes use of this principle to further help in decreasing the progression of Alzheimer's by giving the patients an easy way to look at a great number of both images and words that will help stimulate memories of their closest family members or most cherished moments. The feature is built to be interactive and stores the information about each flashcard in Firebase's Firestore Database.
 ### Chats
