@@ -2,6 +2,15 @@
 Congressional App Challenge (CAC) video: https://www.youtube.com/watch?v=8p2ibn6fGmw<br>
 Website link: https://ronaldreaganremembers.web.app
 ## Description
+In the library next to our school at Hacienda Heights in LA, there was often a group of mentally disabled patients of diverse age groups playing board games, whom we later learned were the patients of the Alzeimers’ Disease (AD). After an in-depth look at the disease, we found out that AD is suffered by 47.5 million people in the world, and every year, 7.7 million new cases are declared according to the worldwide Alzheimer’s Associations. Curious and compassionate about this issue, we set upon a journey of inquiry on Alzheimer’s, in hope to create an app that provides the framework for treating the disease. 
+
+Studies have shown that protective factors, defined as an aspect of personal behavior or lifestyle, environmental exposure, associated with prevention or mitigation of a health-related condition, are promising in delaying developing signs of dementia. In particular, researchers reported that individuals older than 75, engaged in leisure activities including chess, were apt to delay developing signs of dementia when compared to people who did not play. This study, which lasted five years and included almost 500 participants, indicates that involvement in at least ten mind-exercising activities per group, delays early onset of AD by nearly 1.5 years [2].
+
+Toward this end, we sought to create a custom app tailored toward the AD’s patients, featuring chess and flash cards as protective factors, and a chat channel that allows patients to communicate with anyone using the app.
+
+[1] “Mental health: neurological disorders”, World Health Organization (WHO). 3 May 2016. Available online at https://www.who.int/news-room/q-a-detail/mental-health-neurological-disorders <br>
+[2] Coyle J.T. Use it or lose it— “Do effortful mental activities protect against dementia”  N. Engl. J. Med. 2003;348:2489–2490. doi: 10.1056/NEJMp030051.
+
 ### Authentication
 In order to make the app feel customed towards every individual, we put in place an account system using Firebase's built-in authentication system. Individuals visiting the app for the first time have to sign up with an email and password, which are then stored in our Firebase database. From then on, users can login with their credentials to see the rest of what the app has to offer. Each unique email can only be used once and the password must be six or more characters in length to be considered valid. With this system in place, we can track certain information about each user in order to effectively match up people of appropriate skill level in the chess game.
 ### Chess
