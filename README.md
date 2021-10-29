@@ -19,6 +19,7 @@ Before the game starts, there is a waiting queue that starts the game when two p
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/30357759/139355560-ba65a54a-afcc-48a9-8a51-32cd793d4490.gif)
 #### PVC
 The player also has an option to play against the computer. Currently, the AI will only move to any available squares. The future direction of the project will implement either a mini-max or other reinforcement learning algorithms to make the AI more sophiscated.
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/30357759/139356309-64e275b6-e8cf-4b69-8e92-810f292aefee.gif)
 ### Flash Cards
 Based of of cue cards used by caregivers of Alzheimer's patients, our web application has integrated a flash card feature to further help Alzheimer's patients remember the things that are important to them. Currently, it has been shown that while words often get lost with Alzheimer's patients, their memory and feelings can be triggered through the usage of cue cards, which shows images of whatever the caregivers wish to communicate to the patient to the patient. Our flash card feature makes use of this principle to further help in decreasing the progression of Alzheimer's by giving the patients an easy way to look at a great number of both images and words that will help stimulate memories of their closest family members or most cherished moments. The feature is built to be interactive and stores the information about each flashcard in Firebase's Firestore Database.
 ### Chats
